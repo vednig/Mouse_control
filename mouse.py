@@ -88,7 +88,7 @@ def makeMask(hsv_frame, color_Range):
 
 def drawCentroid(vid, color_area, mask, showCentroid):
     
-    _, contour, _ = cv2.findContours( mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contour, _ = cv2.findContours( mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     l=len(contour)
     area = np.zeros(l)
@@ -296,8 +296,11 @@ print (' Press D to use the default settings.')
 print ('**********************************************************************')
 
 yellow_range = calibrateColor('Yellow', yellow_range)
+print(yellow_range)
 red_range = calibrateColor('Red', red_range)
+print(red_range)
 blue_range = calibrateColor('Blue', blue_range)
+print(blue_range)
 print (' Calibration Successfull...')
 
 cv2.namedWindow('Frame')
@@ -326,7 +329,7 @@ while(1):
     y_mask = makeMask( hsv, yellow_range)
 
     py_pos = y_pos 
-
+    
     b_cen = drawCentroid( frame, b_area, b_mask, showCentroid)
     r_cen = drawCentroid( frame, r_area, r_mask, showCentroid)  
     y_cen = drawCentroid( frame, y_area, y_mask, showCentroid)
